@@ -1,4 +1,13 @@
 <template>
+
+<!-- 
+    AuthorL April Bollinger
+    Date: 12/16/2021
+    Program: Weather By Zip (Footer.vue Component)
+    Purpose: Final Exam - Demonstrate understanding of what we have learned and used over the entire semester.
+-->
+
+
     <div class="Footer">
         <p>&copy; April Bollinger</p>
     </div>
