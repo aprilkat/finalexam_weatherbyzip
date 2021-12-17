@@ -20,7 +20,7 @@
 
       <div class="container">
         <Header />
-        <Display />
+        <Display v-bind:results=results v-bind:conditions=conditions v-bind:weather=weather v-bind:temp=conditions v-bind:name=results.name v-bind:descript=weather />
         <Footer />
 
 
@@ -51,7 +51,9 @@ export default {
     // There has to be a return statement.
     return {
       results: [],
-      link: 'api.openweathermap.org/data/2.5/weather?zip=65674,us&appid=2e0630953f40c91e49fb1f649ae8018f',
+      conditions: [],
+      weather: [],
+      
       zip: '',
       error: 'The zip code you entered is not a valid zip code. Please try again.'
   }},
@@ -59,9 +61,12 @@ export default {
 
   // Mounted function that holds the API call.
   mounted(){
-  axios.get(this.link).then(res => {console.alert(res.data);}).catch(error => {console.alert(error);});
+  axios.get('http://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid=d14cf5912674ad7d02026132cefa7cb2').then(res => {this.results=res.data;}).catch(error => {console.log(error);});
+  this.conditions = this.results.main;
+  this.weather = this.results.weather;
   //axios.get(this.link).then (res => {
   //this.results = res.data;
+//})
 }
 
 }

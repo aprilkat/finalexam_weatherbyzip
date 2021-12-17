@@ -33,7 +33,7 @@
         
         <form>
             <label for="zip">Zip Code</label><br>
-            <input v-model="zip" type="text" id="zip" name="zip" ><br>
+            <input type="text" id="zip" name="zip" ><br>
             <input type="radio" id="Fahrenheit" name="format" value="Fahrenheit">
             <label for="Fahrenheit">Fahrenheit</label><br>
             <input type="radio" id="Celcius" name="format" value="Celcius">
@@ -41,7 +41,12 @@
             <input type="button" value="Submit">
         </form>
 
-        <h1></h1>
+
+        <!-- Zip Code will go here -->
+        <h2> {{name}} </h2>
+        <h2>Current Temperature:</h2>
+        <h2>Current Conditions: {{descript}}</h2>
+
 
     </div>
 </template>
@@ -50,7 +55,7 @@
 // Exporting the Display Component
 export default {
     name: 'Display',
-    
+    props: [ 'name', 'conditions', 'img', 'results', 'weather', 'descript',]
 }
         
 
@@ -63,5 +68,6 @@ export default {
         background-color: lightgray;
         color: black;
         width: 100%;
+        text-align: center;
     }
 </style>
