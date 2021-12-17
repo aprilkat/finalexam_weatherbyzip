@@ -2,6 +2,7 @@
       <div class="container">
         <Header />
         <Display />
+        <Footer />
 
 
       </div>
@@ -10,12 +11,14 @@
 <script>
 import Display from './components/Display.vue';
 import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     Display,
-    Header
+    Header,
+    Footer
   }
 }
 </script>
