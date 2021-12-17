@@ -11,6 +11,7 @@
       https://www.w3schools.com/js/js_validation.asp
       https://home.openweathermap.org/api_keys
       https://www.w3schools.com/html/html_form_input_types.asp
+      https://openweathermap.org/current#format
 
 
     Example API call provided:
@@ -52,15 +53,16 @@ export default {
       results: [],
       link: 'api.openweathermap.org/data/2.5/weather?zip=65674,us&appid=2e0630953f40c91e49fb1f649ae8018f',
       zip: '',
+      error: 'The zip code you entered is not a valid zip code. Please try again.'
   }},
 
 
   // Mounted function that holds the API call.
   mounted(){
-   // axios.get(this.link).then(res => {console.log(res.data);}).catch(error => {console.log(error);});
-  axios.get(this.link).then (res => {
-  this.results = res.data;
-})}
+  axios.get(this.link).then(res => {console.alert(res.data);}).catch(error => {console.alert(error);});
+  //axios.get(this.link).then (res => {
+  //this.results = res.data;
+}
 
 }
 

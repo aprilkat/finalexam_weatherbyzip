@@ -11,6 +11,7 @@
     https://www.w3schools.com/js/js_validation.asp
     https://home.openweathermap.org/api_keys
     https://www.w3schools.com/html/html_form_input_types.asp
+    https://openweathermap.org/current#format
     
 -->
 
@@ -21,13 +22,14 @@
 </template>
 
 <script>
+// Exporting the Footer Component
     export default {
         name: 'Footer',
-        
         }
 </script>
 
 <style scoped>
+/* Style intended for the footer element and only that element. */
     .Footer {
         background-color: rgb(2, 168, 2);
         color: white;

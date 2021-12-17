@@ -11,6 +11,7 @@
     https://www.w3schools.com/js/js_validation.asp
     https://home.openweathermap.org/api_keys
     https://www.w3schools.com/html/html_form_input_types.asp
+    https://openweathermap.org/current#format
     
 -->
 
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-
+// Exporting the Header Component
 export default {
     name: 'Header',
 
@@ -32,6 +33,7 @@ export default {
 </script>
 
 <style scoped>
+/* Styles meant for the Header Component only */
     .Header {
         background-color: rgb(39, 39, 39);
         color: white;
