@@ -20,7 +20,7 @@
 
       <div class="container">
         <Header />
-        <Display v-bind:zip=zip v-bind:results=results v-bind:conditions=conditions v-bind:weather=weather v-bind:temp=conditions.temp v-bind:name=results.name v-bind:desc=weather.description />
+        <Display  />
         <Footer />
 
 
@@ -34,8 +34,7 @@ import Display from './components/Display.vue';
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
 
-// Importing axios to use for the API call.
-import axios from 'axios';
+
 
 // Exporting the App data to main.js.
 export default {
@@ -44,27 +43,7 @@ export default {
     Display,
     Header,
     Footer
-  },
-
-// Data needed for the vue components.
-  data() {
-    // There has to be a return statement.
-    return {
-      results: [],
-      conditions: [],
-      weather: [],
-      zip: '',
-  }
-  },
-
-  // Mounted function that holds the API call.
-  mounted(){
-  axios.get('http://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid=d14cf5912674ad7d02026132cefa7cb2').then(res => {this.conditions = res.data.main; this.weather = res.data.weather; this.results=res.data; 
-  }).catch(error => {console.log(error);});
   }}
-
-  
-
 
 
 </script>

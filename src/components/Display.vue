@@ -15,44 +15,29 @@
     
 -->
 
-    <div class="Display">
+    <div class="Display" >
 
-        <!-- Examples found in vue.js docs 
-        <input v-model="zip" placeholder="Zip Code" />
-        <p>Message is: {{zip}}</p>
-
-        <div id="v-model-basic" class="demo">
-  <input v-model="message" placeholder="edit me" />
-  <p>Message is: {{ message }}</p>
-</div>
-
-        Choose between F and C 
-        
-        <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-            <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
-        </div>
-
-
-        -->
-        
-        <form name="weatherform" onsubmit="return validateForm()">
+        <form name="weatherform">
             <label for="zip">Zip Code</label><br>
-            <input type="text" id="zip" name="zip" ><br>
-            <input type="radio" id="Fahrenheit" name="format" value="Fahrenheit">
+            <input v-model="zip" type="text" id="zip" name="zip" ><br>
+            <input v-model="format" type="radio" id="Fahrenheit" name="format" value="imperial">
             <label for="Fahrenheit">Fahrenheit</label><br>
-            <input type="radio" id="Celcius" name="format" value="Celcius">
+            <input v-model="format" type="radio" id="Celcius" name="format" value="metric">
             <label for="Celcius">Celcius</label><br>
-            <input type="button" @click="validateForm()" value="Submit">
+            <button v-on:click="mounted">Search</button>
         </form>
 
 
         <!-- Zip Code will go here -->
-        <img src="">
-        <h2>{{zip}}</h2>
-        <h2> {{name}} </h2>
-        <h2>Current Temperature: {{temp}} </h2>
-        <h2>Current Conditions: {{desc}} </h2>
+        <div  v-bind:zip=zip v-bind:results=results v-bind:conditions=conditions v-bind:weather=weather v-bind:temp=conditions.temp v-bind:n=results.name v-bind:desc=weather.description >
+            <img src="">
+            <h2>{{zip}}</h2>
+            <h2> {{n}} </h2>
+            <h2>Current Temperature: {{temp}} </h2>
+            <!-- Still can't reach the description of the weather -->
+            <h2>Current Conditions: {{decs}} </h2>
+        </div>
+      
         
 
 
@@ -60,19 +45,43 @@
 </template>
 
 <script>
+
+// Importing axios to use for the API call.
+import axios from 'axios';
+
+
 // Exporting the Display Component
 export default {
     name: 'Display',
-    props: [ 'name', 'conditions', 'img', 'results', 'weather', 'temp', 'desc']
-}
-        
-    function validateForm() {
-        let x = document.forms["weatherform"]["zip"].value;
-        if (x.length < 5) {
-            alert("The zip code you entered is not a valid zip code. Please try again.");
-        return false;
+
+    // Data needed for the vue components.
+  data: function() {
+    // There has to be a return statement.
+    return {
+      results: [],
+      conditions: [],
+      weather: [],
+      decs: '',
+      zip: '',
+      format: '',
+      temp: '',
+      n: '',
+      error: 'The zip code you entered is not valid. A zip code is typically 5 numbers long. Please try again.',
   }
-        }
+  },
+
+    methods: {
+        // Mounted function that holds the API call.
+        // Imperial units for F and Metric units for C.
+            mounted(){
+            axios.get('http://api.openweathermap.org/data/2.5/weather?zip=65674,us&units=imperial&appid=d14cf5912674ad7d02026132cefa7cb2').then(res => {this.conditions = res.data.main; this.weather = res.data.weather; this.results=res.data; 
+            }).catch( error => {console.log(error);});
+        }}
+
+}
+ 
+
+
 
 </script>
 
@@ -83,5 +92,9 @@ export default {
         color: black;
         width: 100%;
         text-align: center;
+    }
+
+    button{
+        padding: 10px;
     }
 </style>
