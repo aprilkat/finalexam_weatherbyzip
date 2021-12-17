@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
-/dist
+# Changing the file so it does not exclude the /dist file and it contents when uploading/downloading.
+# /dist
 
 
 # local env files
