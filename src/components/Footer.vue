@@ -5,6 +5,13 @@
     Date: 12/16/2021
     Program: Weather By Zip (Footer.vue Component)
     Purpose: Final Exam - Demonstrate understanding of what we have learned and used over the entire semester.
+
+    Resources:
+    https://v3.vuejs.org/guide/forms.html#basic-usage
+    https://www.w3schools.com/js/js_validation.asp
+    https://home.openweathermap.org/api_keys
+    https://www.w3schools.com/html/html_form_input_types.asp
+    
 -->
 
 
