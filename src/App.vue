@@ -31,10 +31,10 @@
     <label for="Celcius">Celcius</label><br>
     <button v-on:click="changeZip">Search</button>
 
-    <h2 v-bind:name=results.name> {{name}} </h2>
+    <h2> {{results.name}} </h2>
     <h2>Current Temperature: {{conditions.temp}} </h2>
     <!-- Still can't reach the description of the weather -->
-    <h2>Current Conditions: {{outside[0]}} </h2>
+    <h2>Current Conditions: {{outside[0].description}} </h2>
 
     <Footer />
 
