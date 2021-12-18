@@ -22,8 +22,7 @@
     <Header />
     
     <!-- Still being weird  v-bind:desc=weather[0].description -->
-    <Display v-bind:results=results v-bind:conditions=conditions v-bind:weather=weather 
-      v-bind:temp=conditions.temp v-bind:n=results.name  />
+    <Display    />
     <Footer />
 
 
@@ -37,11 +36,9 @@
   import Footer from './components/Footer.vue';
 
   // Importing axios to use for the API call.
-  import axios from 'axios';
+  //import axios from 'axios';
 
-import {zip, format, url1, url2, url3} from './components/Display.vue';
-
-
+import {zipcode, format, url1, url2, url3} from './components/Display.vue';
 
 
   // Exporting the App data to main.js.
@@ -58,17 +55,15 @@ import {zip, format, url1, url2, url3} from './components/Display.vue';
       // There has to be a return statement.
       return {
         results: [],
-        conditions: [],
-        weather: [],
-       
         error: 'The zip code you entered is not valid. A zip code is typically 5 numbers long. Please try again.',
       }
     },
 
-    // Mounted function that holds the API call.
+  methods: {
+     // Mounted function that holds the API call.
     // Imperial units for F and Metric units for C.
-    mounted() {
-      axios.get(url1.concat(zip).concat(url2).concat(format).concat(url3)).then(res => {
+    /*mounted() {
+      axios.get().then(res => {
         this.conditions = res.data.main;
         this.weather = res.data.weather;
         this.results = res.data;
@@ -77,8 +72,25 @@ import {zip, format, url1, url2, url3} from './components/Display.vue';
 
       });
     }
-
   }
+  }*/
+
+   methods: {
+    async getData() {
+      try {
+        const response = await this.$http.get(
+          url1.concat(zipcode).concat(url2).concat(format).concat(url3)
+        );
+        // JSON responses are automatically parsed.
+        this.results = response.data;
+      } catch (error) {
+        console.log(error);
+     }
+    },
+  },
+},
+}
+
 </script>
 
 <style>

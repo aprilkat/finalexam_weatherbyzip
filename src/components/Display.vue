@@ -19,15 +19,16 @@
 
         <!-- Zip Code will go here -->
         <h2><input v-model="zip" type="text" id="zip" name="zip"> <br> {{zip}} </h2>
-        <input onclick='changeFormatF' type="radio" id="F" name="format" value="imperial">
+        <input v-on:click='changeFormatF' type="radio" id="F" name="format" value="imperial">
         <label for="Fahrenheit">Fahrenheit</label><br>
-        <input onclick='changeFormatC' type="radio" id="C" name="format" value="metric">
+        <input v-on:click='changeFormatC' type="radio" id="C" name="format" value="metric">
         <label for="Celcius">Celcius</label><br>
         <button @click="changeZip()">Search</button>
+
         <h2> {{n}} </h2>
-        <h2>Current Temperature: {{temp}} </h2>
+        <h2 >Current Temperature:  </h2>
         <!-- Still can't reach the description of the weather -->
-        <h2>Current Conditions: {{desc}} </h2>
+        <h2>Current Conditions: </h2>
     
     </div>
 </template>
@@ -36,7 +37,6 @@
 
 
 // Variables for the axios url.
-
 var url1 = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 var url2 = ',us&units=';
 var url3 = '&appid=d14cf5912674ad7d02026132cefa7cb2';
@@ -48,10 +48,8 @@ export {zip, format, url1, url2, url3}
 
 // Exporting the Display Component
 export default {
-
-    
     name: 'Display',
-    props: ['results', 'conditions', 'weather', 'temp', 'n', 'desc'],
+    props: [],
     data() {
         return {
             zip: zip,
