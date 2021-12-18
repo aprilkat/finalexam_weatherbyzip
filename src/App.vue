@@ -19,25 +19,23 @@
       api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
 -->
 
-  <div class="container" >
+  <div class="container" v-bind:results=results v-bind:conditions=conditions v-bind:outside=outside >
     <Header />
 
-    <!-- Still being weird  v-bind:desc=weather[0].description -->
-    <!-- Zip Code will go here -->
-    <div class='Display' v-bind:results=results v-bind:conditions=conditions v-bind:outside=outside >
-        <h2><input v-model="zip" type="text" id="zip" name="zip"> <br> {{zip}} </h2>
-        <input v-on:click='changeFormatF' type="radio" id="F" name="format" value="imperial">
-        <label for="Fahrenheit">Fahrenheit</label><br>
-        <input v-on:click='changeFormatC' type="radio" id="C" name="format" value="metric">
-        <label for="Celcius">Celcius</label><br>
-        <button v-on:click="changeZip()">Search</button>
+    <!-- Still being weird  v-bind:desc= -->
 
-        <h2> {{results.name}} </h2>
-        <h2>Current Temperature: {{conditions.temp}} </h2>
-        <!-- Still can't reach the description of the weather -->
-        <h2>Current Conditions: </h2>
+    <h2><input v-model="zip" type="text" id="zip" name="zip"> <br> {{zip}} </h2>
+    <input v-on:click='changeFormatF' type="radio" id="F" name="format" value="imperial">
+    <label for="Fahrenheit">Fahrenheit</label><br>
+    <input v-on:click='changeFormatC' type="radio" id="C" name="format" value="metric">
+    <label for="Celcius">Celcius</label><br>
+    <button v-on:click="changeZip">Search</button>
 
-    </div>
+    <h2 v-bind:name=results.name> {{name}} </h2>
+    <h2>Current Temperature: {{conditions.temp}} </h2>
+    <!-- Still can't reach the description of the weather -->
+    <h2>Current Conditions: {{outside[0]}} </h2>
+
     <Footer />
 
 
@@ -49,12 +47,14 @@
   import Header from './components/Header.vue';
   import Footer from './components/Footer.vue';
 
+  import axios from 'axios';
+
 // Declaring the other variables
   var url1 = 'http://api.openweathermap.org/data/2.5/weather?zip=';
   var url2 = ',us&units=';
   var url3 = '&appid=d14cf5912674ad7d02026132cefa7cb2';
   var format = 'imperial';
-  var zipcode = '35004'
+  var zipcode = ''
 
 
 
@@ -81,19 +81,20 @@
 
     methods: {
       getData() {
-        try {
-          const response = this.$http.get(
-            url1.concat(zipcode).concat(url2).concat(format).concat(url3)
-          );
-          // JSON responses are automatically parsed.
-          this.results = response.data;
-          this.conditions = response.data.main;
-          this.outside = response.data.weather;
-        } catch (error) {
-          console.log(error);
+      
+          axios.get(url1.concat(zipcode).concat(url2).concat(format).concat(url3)).then(
+        (response) => {
+            this.results = response.data;
+            this.conditions = response.data.main;
+            this.outside = response.data.weather;
+
+            console.log(this.results);
+        },
+        (error) => {
+            console.log(error);
         }
-      },
-    },
+    );
+},
 
 
     created() {
@@ -113,7 +114,7 @@
       this.getData();
 
     },
-    }
+    }}
 
 </script>
 
@@ -126,10 +127,5 @@
 
   }
 
-  .Display {
-    border: 5px solid black;
-    width: 75%;
-    margin: auto;
-    margin-top: 50px;
-    }
+  
 </style>
