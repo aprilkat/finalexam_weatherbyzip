@@ -12,6 +12,7 @@
     https://home.openweathermap.org/api_keys
     https://www.w3schools.com/html/html_form_input_types.asp
     https://openweathermap.org/current#format
+    https://www.section.io/engineering-education/how-to-interact-with-an-api-from-a-vuejs-application/
     
 -->
 
