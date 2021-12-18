@@ -22,15 +22,17 @@
   <div class="container" v-bind:results=results v-bind:conditions=conditions v-bind:outside=outside >
     <Header />
 
-    <!-- Still being weird  v-bind:desc= -->
-
+    <!-- all of the elements that get data from the user--> 
     <h2><input v-model="zip" type="text" id="zip" name="zip"> <br> {{zip}} </h2>
     <input v-on:click='changeFormatF' type="radio" id="F" name="format" value="imperial">
     <label for="Fahrenheit">Fahrenheit</label><br>
     <input v-on:click='changeFormatC' type="radio" id="C" name="format" value="metric">
     <label for="Celcius">Celcius</label><br>
+
+    <!-- The button must be clicked to get the first results -->
     <button v-on:click="changeZip">Search</button>
 
+<!-- The elements that hold the data that will get returned when the button is clicked -->
     <h2> {{results.name}} </h2>
     <h2>Current Temperature: {{conditions.temp}} </h2>
     <!-- Still can't reach the description of the weather -->
@@ -75,13 +77,12 @@
         conditions: [],
         outside: [],
         zip: '65674',
-        error: 'The zip code you entered is not valid. A zip code is typically 5 numbers long. Please try again.',
       }
     },
 
     methods: {
       getData() {
-      
+          // Reformatted the API call a little
           axios.get(url1.concat(zipcode).concat(url2).concat(format).concat(url3)).then(
         (response) => {
             this.results = response.data;
@@ -90,18 +91,21 @@
 
             console.log(this.results);
         },
+        // Error Catch
         (error) => {
-            console.log(error);
+          console.log(error);
+          alert('The Zipcode you entered is not valid. Please try again. Hint: They are normally five numbers log. If you would like to discover more codes, visit https://zipcodes.org/us-zip-codes');
+
         }
     );
 },
 
-
+    
     created() {
       this.getData();
     },
   
-
+  // Changes to the format of the temp returned.
     changeFormatF() {
       format = 'imperial';
     },
@@ -109,6 +113,7 @@
       format = 'metric';
     },
 
+// Change zipcode and call the axios.
     changeZip() {
       zipcode = document.getElementById('zip').value;
       this.getData();

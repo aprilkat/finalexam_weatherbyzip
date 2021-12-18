@@ -1,6 +1,6 @@
 <template>
 
-<!-- 
+    <!-- 
     AuthorL April Bollinger
     Date: 12/16/2021
     Program: Weather By Zip (Footer.vue Component)
@@ -16,21 +16,21 @@
     
 -->
 
-
+    <!-- Footer -->
     <div class="Footer">
         <p>&copy; April Bollinger</p>
     </div>
 </template>
 
 <script>
-// Exporting the Footer Component
+    // Exporting the Footer Component
     export default {
         name: 'Footer',
-        }
+    }
 </script>
 
 <style scoped>
-/* Style intended for the footer element and only that element. */
+    /* Style intended for the footer element and only that element. */
     .Footer {
         background-color: rgb(2, 168, 2);
         color: white;

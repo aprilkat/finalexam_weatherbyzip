@@ -1,6 +1,6 @@
 <template>
 
-<!-- 
+    <!-- 
     AuthorL April Bollinger
     Date: 12/16/2021
     Program: Weather By Zip (Header.vue Component)
@@ -17,24 +17,23 @@
 -->
 
 
-
+    <!-- Title -->
     <div class="Header">
         <h1>Weather By Zip</h1>
     </div>
-    
+
 </template>
 
 <script>
-// Exporting the Header Component
-export default {
-    name: 'Header',
+    // Exporting the Header Component
+    export default {
+        name: 'Header',
 
     }
-
 </script>
 
 <style scoped>
-/* Styles meant for the Header Component only */
+    /* Styles meant for the Header Component only */
     .Header {
         background-color: rgb(39, 39, 39);
         color: white;
