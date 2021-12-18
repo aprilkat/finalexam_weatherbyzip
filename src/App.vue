@@ -36,7 +36,8 @@
     <h2> {{results.name}} </h2>
     <h2>Current Temperature: {{conditions.temp}} </h2>
     <!-- Still can't reach the description of the weather -->
-    <h2>Current Conditions: {{outside[0].description}} </h2>
+    <h2>Current Conditions: {{outside[0]}} </h2>
+    <!-- Add in the description after loading the page the first time? -->
 
     <Footer />
 
@@ -94,6 +95,7 @@
         // Error Catch
         (error) => {
           console.log(error);
+
           alert('The Zipcode you entered is not valid. Please try again. Hint: They are normally five numbers log. If you would like to discover more codes, visit https://zipcodes.org/us-zip-codes');
 
         }
